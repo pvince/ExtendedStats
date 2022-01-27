@@ -1,8 +1,10 @@
+import os
+
 # the password for the database
 password = "basilisk"
 
 # the host the database runs on
-dbhost = "localhost"
+dbhost = os.environ['MYSQLDB_1_PORT_3306_TCP_ADDR']
 
 # the user to log into the database as
 dbuser = "root"

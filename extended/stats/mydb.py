@@ -7,7 +7,7 @@ def get():
         db = sqlite3.connect(":memory:")
     else:
         import MySQLdb
-        db = MySQLdb.connect(host=sitedata.dbhost, user=sitedata.dbuser , passwd=sitedata.password, db=sitedata.dbname)
+        db = MySQLdb.connect(host='mysqldb', user=sitedata.dbuser , passwd=sitedata.password, db=sitedata.dbname)
         db.autocommit = True
         #db.set_character_set('utf8')
         dbc = db.cursor()
