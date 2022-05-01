@@ -22,15 +22,8 @@ RUN dpkg-reconfigure locales
 ENV DBUSER root
 ENV DBPASS basilisk
 
-#install files
-RUN mkdir -p /home/ubuntu/extended/db
-COPY . /home/ubuntu/extended/
-RUN chmod -R 777 /home/ubuntu/extended
-RUN chgrp -R www-data /home/ubuntu/extended
-#setup supervisord
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-RUN chmod +x /home/ubuntu/extended/setup_mysql.sh
+#expose the basic web ports
+EXPOSE 80 8080
 
 #setup apache2
 RUN mkdir -p /var/lock/apache2
@@ -44,13 +37,21 @@ RUN chgrp -R www-data /var/www
 COPY stats.conf /etc/apache2/conf-enabled/
 RUN a2enmod wsgi
 
+#setup supervisord
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 #add cronjob
 COPY crons.conf /etc/cron.d/extended
 RUN chmod 0644 /etc/cron.d/extended
 RUN crontab /etc/cron.d/extended
 
 
-#expose the basic web ports
-EXPOSE 80 8080
+#install files
+RUN mkdir -p /home/ubuntu/extended/db
+COPY . /home/ubuntu/extended/
+RUN chmod -R 777 /home/ubuntu/extended
+RUN chgrp -R www-data /home/ubuntu/extended
+RUN chmod +x /home/ubuntu/extended/setup_mysql.sh
+
 #start supervisor which starts web & mysql
 CMD ["/usr/bin/supervisord"]
