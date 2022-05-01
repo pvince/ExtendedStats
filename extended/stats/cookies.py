@@ -95,7 +95,8 @@ def cookies(request):
     options = views.Options(request)
     if request.method == 'POST':
         form = CookieForm(request.POST) # A form bound to the POST data
-        form.cookieHost = request.get_host()
+        # remove port host to get domain only
+        form.cookieHost = request.get_host().split(':')[0]
         if form.is_valid():
             # Process the data in form.cleaned_data
             vals =  { 'form': form,  'cookies' : request.COOKIES, 'options' : options }
@@ -105,7 +106,8 @@ def cookies(request):
             return response
     else:
         form = CookieForm(request.COOKIES)
-        form.cookieHost = request.get_host()
+        # remove port host to get domain only
+        form.cookieHost = request.get_host().split(':')[0]
     vals =  { 'form': form,  'cookies' : request.COOKIES, 'options' : options }
     vals.update(csrf(request))
     return render_to_response('stats/cookies.html', vals)
