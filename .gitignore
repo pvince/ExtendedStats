@@ -10,3 +10,4 @@
 /sql_log.txt
 /ec2_rds.txt
 /extended/angular/node_modules
+.vscode
