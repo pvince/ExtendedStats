@@ -51,7 +51,9 @@ class DownloaderRecord(object):
     def toSQL(self):
         import time
         format = '%Y-%m-%d %H:%M:%S'
-        return "insert into downloader (starttime, endtime, filesprocessed, waittime, pausetime, nothing, failures, users, games, files1, files2, files3, tryagains) values ('%s', '%s', %d, %6.2f, %6.2f, %6.2f, %d, %d, %d, %d, %d, %d, %d)" % (time.strftime(format, time.localtime(self.starttime)), time.strftime(format, time.localtime(self.endtime)), self.filesprocessed, self.waittime, self.pausetime, self.nothing, self.failures, self.users, self.games, self.files1, self.files2, self.files3, self.tryagains)
+        # TODO: update DB schema to capture the additional data
+        # return "insert into downloader (starttime, endtime, filesprocessed, waittime, pausetime, nothing, failures, users, games, files1, files2, files3, tryagains) values ('%s', '%s', %d, %6.2f, %6.2f, %6.2f, %d, %d, %d, %d, %d, %d, %d)" % (time.strftime(format, time.localtime(self.starttime)), time.strftime(format, time.localtime(self.endtime)), self.filesprocessed, self.waittime, self.pausetime, self.nothing, self.failures, self.users, self.games, self.files1, self.files2, self.files3, self.tryagains)
+        return "insert into downloader (starttime, endtime, filesprocessed, waittime, pausetime, failures, users, games) values ('%s', '%s', %d, %6.2f, %6.2f, %d, %d, %d)" % (time.strftime(format, time.localtime(self.starttime)), time.strftime(format, time.localtime(self.endtime)), self.filesprocessed, self.waittime, self.pausetime, self.failures, self.users, self.games)
 
     def __str__(self):
         import time
