@@ -7,6 +7,8 @@ MAINTAINER Jay Atkinson <jgatkinsn@gmail.com>
 RUN apt-get update
 RUN apt-get install -y python2.7
 RUN apt-get install -y python-pymysql
+#used by downloader
+RUN apt-get install -y python-mysqldb
 RUN apt-get install -y apache2
 # blocker for ubuntu 18.04: https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image
 RUN apt-get install -y python-django
