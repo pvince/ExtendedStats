@@ -535,12 +535,14 @@ def downloadFile(url, filename, verbose=False):
         t = time.time()
         # I used to use wget but found it very unreliable on my internet connection.
         # I could probably use urllib now but would it be as good as wget or as good as curl?
-        subprocess.check_call(["/usr/bin/curl", "--compressed", "-s", "--max-time", "300", "-o", filename, url])
+        # TODO: use --fail-with-body; only available in 7.76; latest on Ubuntu 14 is 7.35?
+        # https://curl.se/docs/manpage.html
+        subprocess.check_output(["/usr/bin/curl", "--fail", "--compressed", "-s", "--max-time", "300", "-o", filename, url])
         t2 = time.time()
         logging.info("took %f" % (t2-t))
         return 1
-    except subprocess.CalledProcessError:
-        logging.warning("curl failed to get %s" % url)
+    except subprocess.CalledProcessError as e:
+        logging.warning("curl failed to get %s: %s" % (url, e.output))
         return 0
 
 def getFile(url, filename, verbose=False):

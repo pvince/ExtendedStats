@@ -618,7 +618,10 @@ def refreshFile(db, filename, url, method, geek, rec):
     result = eval("%s(db, '%s', '%s', '%s')" % (method, dest, geek, url), globals(), locals())
     if result and (dest is not None):
         try:
-            os.remove(dest)
+            #TODO: revert change
+            #os.remove(dest)
+            if 1 == 0:
+                return 0
         except OSError:
             pass
     return result
