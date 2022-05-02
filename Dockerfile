@@ -24,8 +24,9 @@ RUN dpkg-reconfigure locales
 # not needed
 RUN apt-get install -y nano
 
-ENV DBUSER root
-ENV DBPASS basilisk
+ENV DBUSER=root
+ENV DBPASS=basilisk
+ENV TZ=America/New_York
 
 #expose the basic web ports
 EXPOSE 80 8080

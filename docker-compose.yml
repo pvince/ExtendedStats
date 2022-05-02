@@ -18,6 +18,7 @@ services:
     environment:
         - MYSQL_ROOT_PASSWORD=basilisk
         - MYSQL_DATABASE=extended
+        - TZ=America/New_York
     container_name: extstats-db
     volumes:
       - extstats-data:/var/lib/mysql
