@@ -1,12 +1,12 @@
 #preliminary stuff
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Jay Atkinson <jgatkinsn@gmail.com>
 
 
 #install basics
 RUN apt-get update
 RUN apt-get install -y python2.7
-RUN apt-get install -y python-mysqldb
+RUN apt-get install -y python-pymysql
 RUN apt-get install -y apache2
 RUN apt-get install -y python-django
 RUN apt-get install -y mysql-client
