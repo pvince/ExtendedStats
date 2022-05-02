@@ -6,10 +6,10 @@ from MySQLdb import Timestamp
 COLLECTION_URL = u"https://boardgamegeek.com/xmlapi2/collection?username=%s&brief=1&stats=1"
 PLAYED_URL = "https://boardgamegeek.com/plays/bymonth/user/%s/subtype/boardgame"
 PROFILE_URL = "https://boardgamegeek.com/user/%s"
-TOP50_URL = "https://www.boardgamegeek.com/browse/boardgame"
+TOP50_URL = "https://boardgamegeek.com/browse/boardgame"
 MOST_VOTERS_URL = "https://boardgamegeek.com/browse/boardgame?sort=numvoters&sortdir=desc"
 GAME_URL = "https://boardgamegeek.com/xmlapi/boardgame/%d&stats=1"
-MARKET_URL = "https://www.boardgamegeek.com/geekstore.php3?action=viewuser&username=%s"
+MARKET_URL = "https://boardgamegeek.com/geekstore.php3?action=viewuser&username=%s"
 
 def readUserNames():
     import sitedata, library
