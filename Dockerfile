@@ -8,6 +8,7 @@ RUN apt-get update
 RUN apt-get install -y python2.7
 RUN apt-get install -y python-pymysql
 RUN apt-get install -y apache2
+# blocker for ubuntu 18.04: https://serverfault.com/questions/949991/how-to-install-tzdata-on-a-ubuntu-docker-image
 RUN apt-get install -y python-django
 RUN apt-get install -y mysql-client
 RUN apt-get install -y libapache2-mod-wsgi
@@ -18,6 +19,8 @@ RUN apt-get install -y curl
 RUN apt-get install -y python-requests
 RUN apt-get install -y language-pack-en-base
 RUN dpkg-reconfigure locales
+# not needed
+RUN apt-get install -y nano
 
 ENV DBUSER root
 ENV DBPASS basilisk
