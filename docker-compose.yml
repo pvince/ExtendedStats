@@ -1,15 +1,25 @@
-extendedweb:
+version: "2"
+services:
+  extendedweb:
+    container_name: extstats-web
     build: .
     ports:
-        - "8082:80"
+        - "8001:80"
     links:
         - mysqldb
     command: /usr/bin/supervisord
+    depends_on:
+      - mysqldb
 
-mysqldb:
+  mysqldb:
     image: 'mysql:5.5'
     ports:
         - "3306:3306"
     environment:
         - MYSQL_ROOT_PASSWORD=basilisk
         - MYSQL_DATABASE=extended
+    container_name: extstats-db
+    volumes:
+      - extstats-data:/var/lib/mysql
+volumes:
+  extstats-data:
