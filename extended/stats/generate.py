@@ -1011,9 +1011,11 @@ def getShouldPlayGames(context, owned):
         gg.rating = g.rating
         gg.gameurl = g.game.url
         gg.gamename = g.game.name
+        gg.plays = g.plays
+        gg.shouldPlayMax = g.game.shouldPlayMax
         gg.sincePlayed = 0
         result.append(gg)
-        if gg.lastPlay is None or gg.rating < 7:
+        if gg.lastPlay is None or gg.rating < 7 or (not gg.shouldPlayMax is None and gg.plays >= gg.shouldPlayMax):
             gg.score = 0.0
         else:
             r = gg.rating

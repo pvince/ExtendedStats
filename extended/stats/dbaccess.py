@@ -28,7 +28,7 @@ PLAYS_FIELDS = ["game", "playDate", "quantity", "raters", "ratingsTotal", "locat
 FILES_FIELDS = ["filename", "url", "lastUpdate", "nextUpdate", "processMethod", "tillNextUpdate", "description", "lastattempt"]
 GAMES_FIELDS = ["bggid", "name", "average", "rank", "yearpublished", "minplayers", "maxplayers", "playtime", "usersrated",
                 "userstrading", "userswanting", "userswishing", "averageweight", "bayesaverage", "stddev", "median",
-                "numcomments", "expansion", "usersowned", "subdomain"]
+                "numcomments", "expansion", "usersowned", "subdomain", "shouldPlayMax"]
 DESIGNER_FIELDS = ["name", "bggid", "boring", "url"]
 GAME_DESIGNER_FIELDS = ["gameId", "designerId"]
 PUBLISHER_FIELDS = ["name", "bggid", "url"]

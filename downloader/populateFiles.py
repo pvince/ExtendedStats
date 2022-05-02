@@ -488,6 +488,9 @@ def _readFile(game, id, filename):
         game.averageWeight = 0
         game.bayesAverage = 5.5
     game.categories = library.getTextList(dom.getElementsByTagName("boardgamecategory"))
+    game.families = library.getTextList(dom.getElementsByTagName("boardgamefamily"))
+    if "Category: Escape Room Games" in game.families:
+        game.shouldPlayMax = 1
     try:
         yptags = dom.getElementsByTagName("yearpublished")
         game.year = int(library.getText(yptags[0]))
@@ -740,14 +743,17 @@ def addGame(db, id):
     ensureGame(db, id)
 
 def saveGameData(db, game):
-    if game.__dict__.get("usersRated") is None:
-        s = "update games set name = '%s', subdomain = '%s', average = %f, rank = %d, yearPublished = %d, minPlayers = %d, maxPlayers = %d, playTime = %d, averageWeight = %f, bayesAverage = %f, thumbnail = '%s' where bggid = %d" %  \
-            (sqlQuote(game.name), sqlQuote(game.subdomain), game.average, game.rank, game.year, game.minPlayers, game.maxPlayers, game.playTime, game.averageWeight, game.bayesAverage, sqlQuote(game.thumbnail), game.id)
-        db.execute(s)
-    else:
-        s = "update games set name = '%s', subdomain = '%s', average = %f, rank = %d, yearPublished = %d, minPlayers = %d, maxPlayers = %d, playTime = %d, averageWeight = %f, bayesAverage = %f, thumbnail = '%s', usersOwned = %d, usersRated = %d where bggid = %d" % \
-            (sqlQuote(game.name), sqlQuote(game.subdomain), game.average, game.rank, game.year, game.minPlayers, game.maxPlayers, game.playTime, game.averageWeight, game.bayesAverage, sqlQuote(game.thumbnail), game.usersOwned, game.usersRated, game.id)
-        db.execute(s)
+    update = "update games set name = '%s', subdomain = '%s', average = %f, rank = %d, yearPublished = %d, minPlayers = %d, maxPlayers = %d, playTime = %d, averageWeight = %f, bayesAverage = %f, thumbnail = '%s' " %  \
+            (sqlQuote(game.name), sqlQuote(game.subdomain), game.average, game.rank, game.year, game.minPlayers, game.maxPlayers, game.playTime, game.averageWeight, game.bayesAverage, sqlQuote(game.thumbnail))
+    if not game.__dict__.get("usersRated") is None:
+        ratingUpdate = ", usersOwned = %d, usersRated = %d" % (game.usersOwned, game.usersRated)
+        update = update + ratingUpdate
+    if not game.__dict__.get("shouldPlayMax") is None:
+        # TODO: add DB schema change for shouldPlayMax
+        maxUpdate = ", shouldPlayMax = %d" % game.shouldPlayMax
+        update = update + maxUpdate
+    where = " where bggid = %d" % game.id
+    db.execute(update + where)
 
 def ensureExpansion(db, base, expansion):
     ensureGame(db, base)
