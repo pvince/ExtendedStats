@@ -94,8 +94,8 @@ Use selection...
 <td>{{row.plays}}</td>
 <td>{{row.bggrank}}</td>
 <td>{{row.bggavg}}</td>
-{% if row.firstPlay %}<td>{{row.firstPlay|date:"d-m-Y"}}</td>{% else %}<td>&nbsp;</td>{% endif %}
-{% if row.lastPlay %}<td>{{row.lastPlay|date:"d-m-Y"}}</td>{% else %}<td>&nbsp;</td>{% endif %}
+{% if row.firstPlay %}<td>{{row.firstPlay|date:"Y-m-d"}}</td>{% else %}<td>&nbsp;</td>{% endif %}
+{% if row.lastPlay %}<td>{{row.lastPlay|date:"Y-m-d"}}</td>{% else %}<td>&nbsp;</td>{% endif %}
 <td>{{row.monthsPlayed}}</td>
 <td>{{row.hours}}</td>
 <td>{{row.fave}}</td>
