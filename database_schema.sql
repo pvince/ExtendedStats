@@ -420,6 +420,7 @@ CREATE TABLE `games` (
   `thumbnail` varchar(256) DEFAULT '',
   `usersOwned` int(10) unsigned DEFAULT '0',
   `subdomain` varchar(45) DEFAULT NULL,
+  `shouldPlayMax` int(10) unsigned DEFAULT '0',
   PRIMARY KEY (`bggid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
