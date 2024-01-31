@@ -4,7 +4,7 @@ services:
     container_name: extstats-web
     build: .
     ports:
-        - "8001:80"
+        - "80:80"
     links:
         - mysqldb
     command: /usr/bin/supervisord
