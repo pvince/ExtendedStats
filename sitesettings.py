@@ -13,7 +13,7 @@ dbuser = "root"
 dbname = "extended"
 
 # domain for cookie security
-domain = "citadel"
+domain = "extstats.pvince.me"
 
 # the internet-visible address of this service - used for when the downloader wants to copy stuff
 # from the dynamic web site

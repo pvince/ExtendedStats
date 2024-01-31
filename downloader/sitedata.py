@@ -12,8 +12,9 @@ resultdir= os.path.join(installDir, "static")
 logfile = os.path.join(installDir, "downloader.log")
 
 # a public file owned by drfriendless@gmail.com
-#usernames_url = "https://pastebin.com/raw/BvvdxzcH"
-usernames_url = "https://gist.githubusercontent.com/HolisticDeveloper/3e488ca8c5dc0f582274d52a661ff063/raw/e93ae664e3ea7889bc073241f3a485b43effa18e/bggusers.txt"
+# usernames_url = "https://pastebin.com/raw/BvvdxzcH"
+usernames_url = "https://pvince.me/exstats/users"
 
 # a public file owned by drfriendless@gmail.com
-metadata_url = "https://pastebin.com/raw/iS8idfaH"
+# metadata_url = "https://pastebin.com/raw/iS8idfaH"
+metadata_url = "https://pvince.me/exstats/metadata"
