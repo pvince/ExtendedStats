@@ -58,8 +58,6 @@ COPY . /home/ubuntu/extended/
 RUN chmod -R 777 /home/ubuntu/extended
 RUN chgrp -R www-data /home/ubuntu/extended
 RUN chmod +x /home/ubuntu/extended/setup_mysql.sh
-RUN sleep 5;/home/ubuntu/extended/setup_mysql.sh
-
 
 #start supervisor which starts web & mysql
 CMD ["/usr/bin/supervisord"]
